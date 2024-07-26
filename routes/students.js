@@ -5,7 +5,7 @@ const Student = require('../models/Student');
 const BorrowRecord = require('../models/BorrowRecord');
 const Book = require('../models/Book');
 const secretKey = process.env.SECRET_KEY || 'baiq_123';
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 
 // Middleware to verify student token
 const verifyStudentToken = (req, res, next) => {
@@ -37,7 +37,7 @@ router.post('/register', async (req, res) => {
             userId,
             name,
             email,
-            password: bcrypt.hashSync(password, 10)
+            password: bcryptjs.hashSync(password, 10)
         });
 
         await newStudent.save();
