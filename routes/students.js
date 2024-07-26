@@ -66,6 +66,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Borrow book
+//verifyStudentToken merupakan pembatas hak akses sebelum melakukan peminjaman buku
 router.post('/borrow', verifyStudentToken, async (req, res) => {
     try {
         const { bookId, returnDate } = req.body;
@@ -93,6 +94,7 @@ router.post('/borrow', verifyStudentToken, async (req, res) => {
 });
 
 // Get all books
+//verifyStudentToken merupakan pembatas hak akses sebelum mengambil data buku
 router.get('/books', verifyStudentToken, async (req, res) => {
     try {
         const books = await Book.find();
